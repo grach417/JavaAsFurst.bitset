@@ -4,53 +4,94 @@ package com.company;
 
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 
+class Set {
 
-public class Set {
-    HashSet<Integer> a = new HashSet<>();
-    HashSet<Integer> b = new HashSet<>();
+    private HashSet<Integer> a;
+    private HashSet<Integer> b;
+    private int indA;
+    private int indB;
 
-    public HashSet<Integer> intersect(){
+
+    Set(HashSet<Integer> a, HashSet<Integer> b, int indA, int indB) {
+        this.a = a;
+        this.b = b;
+        this.indA = indA;
+        this.indB = indB;
+    }
+    Set(HashSet<Integer> a, HashSet<Integer> b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    void intersect() {
         HashSet<Integer> result = new HashSet<>();
-        for (Integer t : a) {
+        Iterator<Integer> iterator = a.iterator();
+        while (iterator.hasNext()) {
+            Integer t = iterator.next();
             if (b.contains(t)) {
                 result.add(t);
             }
         }
-        return result;
     }
 
-    public HashSet<Integer> union (){
+
+    void union() {
 
         HashSet<Integer> result = new HashSet<>();
         result.addAll(a);
         result.addAll(b);
-        return result;
 
     }
 
-    public HashSet<Integer> additionA(){
+    void additionA() {
 
         HashSet<Integer> result = new HashSet<>();
-        for (Integer t : a) {
+        Iterator<Integer> iterator = a.iterator();
+        while (iterator.hasNext()) {
+            Integer t = iterator.next();
             if (!b.contains(t)) {
                 result.add(t);
             }
         }
-        return result;
 
     }
-    public HashSet<Integer> additionB(){
+
+    void additionB() {
 
         HashSet<Integer> result = new HashSet<>();
-        for (Integer t : b) {
+        Iterator<Integer> iterator = b.iterator();
+        while (iterator.hasNext()) {
+            Integer t = iterator.next();
             if (!a.contains(t)) {
                 result.add(t);
             }
         }
-        return result;
 
     }
 
+    void removeElementA() {
+
+        Iterator<Integer> iterator = a.iterator();
+        while (iterator.hasNext()) {
+            Integer t = iterator.next();
+            if (t == indA)
+                return;
+        }
+    }
+    void removeElementB() {
+
+        Iterator<Integer> iterator = b.iterator();
+        while (iterator.hasNext()) {
+            Integer t = iterator.next();
+            if (t == indB)
+                return;
+        }
+    }
+
 }
+
+
+
